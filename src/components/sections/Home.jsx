@@ -9,9 +9,9 @@ function Home(){
         </h1>
 
         <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
-            Computer Science graduate, currently pursuing an MSc in Information Technology.
-            I have experience in both frontend and backend development, with a main focus on frontend. 
-            I work with HTML,CSS,JavaScript, and React, and also have knowledge of Python and REST APIs.
+            MSc in Information Technology, with strong programming skills and hands-on experience in backend development and software testing. 
+            Proficient in Python, MySQL, JavaScript with exposure to MongoDB, REST APIs, and QA practices. 
+            Passionate about building scalable systems and ensuring software quality through systematic testing and validation.
         </p>
         <div className="flex justify-center space-x-4">
         <a href="#projects" className="bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]">
