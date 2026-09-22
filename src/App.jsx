@@ -23,25 +23,32 @@ function App() {
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        {/* NAVBAR - always stays sharp */}
+        {/* Navbar */}
         <Navbar
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
         />
 
-        {/* MOBILE MENU - always stays sharp */}
+        {/* Mobile Menu */}
         <MobileMenu
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
         />
 
-        {/* ONLY THIS PART GETS BLURRED */}
+        {/* Portfolio Content */}
         <main
-          className={`transition-all duration-300 ${
-            menuOpen
-              ? "blur-md scale-[0.995]"
-              : "blur-0 scale-100"
-          }`}
+          className={`
+            relative
+            z-0
+            transition-all
+            duration-300
+            ease-in-out
+            ${
+              menuOpen
+                ? "blur-[8px] scale-[0.995]"
+                : "blur-0 scale-100"
+            }
+          `}
         >
           <Home />
           <About />

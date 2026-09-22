@@ -1,13 +1,8 @@
 import { useEffect } from "react";
 
 function Navbar({ menuOpen, setMenuOpen }) {
-  // Prevent background page scrolling while mobile menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -21,18 +16,21 @@ function Navbar({ menuOpen, setMenuOpen }) {
         top-0
         left-0
         w-full
-        z-[70]
+        z-[100]
+
         bg-[rgba(10,10,10,0.8)]
         backdrop-blur-lg
+
         border-b
         border-white/10
+
         shadow-lg
       "
     >
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
 
-          {/* Logo */}
+          {/* LOGO */}
           <a
             href="#home"
             onClick={() => setMenuOpen(false)}
@@ -43,9 +41,10 @@ function Navbar({ menuOpen, setMenuOpen }) {
               text-blue-600
               transition-opacity
               duration-300
+
               ${
                 menuOpen
-                  ? "opacity-0 md:opacity-100"
+                  ? "opacity-100"
                   : "opacity-100"
               }
             `}
@@ -53,26 +52,40 @@ function Navbar({ menuOpen, setMenuOpen }) {
             mayur<span className="text-yellow-500">.portfolio</span>
           </a>
 
-          {/* Mobile Toggle Button */}
+          {/* MOBILE BUTTON */}
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={
+              menuOpen
+                ? "Close menu"
+                : "Open menu"
+            }
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() =>
+              setMenuOpen((prev) => !prev)
+            }
             className="
               md:hidden
+
               relative
-              z-[80]
+              z-[110]
+
               flex
               items-center
               justify-center
+
               w-10
               h-10
+
               text-3xl
               text-gray-300
+
               hover:text-white
+              active:text-white
+
               transition-colors
               duration-200
+
               cursor-pointer
               focus:outline-none
             "
@@ -80,9 +93,15 @@ function Navbar({ menuOpen, setMenuOpen }) {
             {menuOpen ? "\u2715" : "\u2630"}
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-
+          {/* DESKTOP NAVIGATION */}
+          <div
+            className="
+              hidden
+              md:flex
+              items-center
+              space-x-8
+            "
+          >
             <a
               href="#home"
               className="
@@ -130,7 +149,6 @@ function Navbar({ menuOpen, setMenuOpen }) {
             >
               Contact
             </a>
-
           </div>
 
         </div>
