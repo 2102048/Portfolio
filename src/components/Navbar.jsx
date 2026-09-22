@@ -9,151 +9,210 @@ function Navbar({ menuOpen, setMenuOpen }) {
     };
   }, [menuOpen]);
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
-    <nav
-      className="
-        fixed
-        top-0
-        left-0
-        w-full
-        z-[100]
+    <>
+      {/* ================= NAVBAR ================= */}
+      <nav
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "64px",
+          zIndex: 9999,
+          background: "rgba(10, 10, 10, 0.85)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+        }}
+      >
+        <div className="max-w-5xl mx-auto px-4 h-full">
+          <div className="flex justify-between items-center h-full">
 
-        bg-[rgba(10,10,10,0.8)]
-        backdrop-blur-lg
-
-        border-b
-        border-white/10
-
-        shadow-lg
-      "
-    >
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-
-          {/* LOGO */}
-          <a
-            href="#home"
-            onClick={() => setMenuOpen(false)}
-            className={`
-              font-mono
-              text-xl
-              font-bold
-              text-blue-600
-              transition-opacity
-              duration-300
-
-              ${
-                menuOpen
-                  ? "opacity-100"
-                  : "opacity-100"
-              }
-            `}
-          >
-            mayur<span className="text-yellow-500">.portfolio</span>
-          </a>
-
-          {/* MOBILE BUTTON */}
-          <button
-            type="button"
-            aria-label={
-              menuOpen
-                ? "Close menu"
-                : "Open menu"
-            }
-            aria-expanded={menuOpen}
-            onClick={() =>
-              setMenuOpen((prev) => !prev)
-            }
-            className="
-              md:hidden
-
-              relative
-              z-[110]
-
-              flex
-              items-center
-              justify-center
-
-              w-10
-              h-10
-
-              text-3xl
-              text-gray-300
-
-              hover:text-white
-              active:text-white
-
-              transition-colors
-              duration-200
-
-              cursor-pointer
-              focus:outline-none
-            "
-          >
-            {menuOpen ? "\u2715" : "\u2630"}
-          </button>
-
-          {/* DESKTOP NAVIGATION */}
-          <div
-            className="
-              hidden
-              md:flex
-              items-center
-              space-x-8
-            "
-          >
+            {/* LOGO */}
             <a
               href="#home"
-              className="
-                text-gray-300
-                hover:text-white
-                transition-colors
-                duration-200
-              "
+              onClick={closeMenu}
+              className="font-mono text-xl font-bold text-blue-600"
             >
-              Home
+              mayur<span className="text-yellow-500">.portfolio</span>
             </a>
 
-            <a
-              href="#about"
-              className="
-                text-gray-300
-                hover:text-white
-                transition-colors
-                duration-200
-              "
+            {/* MOBILE BUTTON */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden text-3xl text-gray-300 hover:text-white"
+              style={{
+                position: "relative",
+                zIndex: 10001,
+                width: "45px",
+                height: "45px",
+              }}
             >
-              About
-            </a>
+              {menuOpen ? "×" : "☰"}
+            </button>
 
-            <a
-              href="#projects"
-              className="
-                text-gray-300
-                hover:text-white
-                transition-colors
-                duration-200
-              "
-            >
-              Project
-            </a>
+            {/* DESKTOP MENU */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a
+                href="#home"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Home
+              </a>
 
-            <a
-              href="#contact"
-              className="
-                text-gray-300
-                hover:text-white
-                transition-colors
-                duration-200
-              "
-            >
-              Contact
-            </a>
+              <a
+                href="#about"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                About
+              </a>
+
+              <a
+                href="#projects"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Project
+              </a>
+
+              <a
+                href="#contact"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Contact
+              </a>
+            </div>
           </div>
+        </div>
+      </nav>
 
+      {/* ================= MOBILE BACKDROP ================= */}
+      {menuOpen && (
+        <div
+          onClick={closeMenu}
+          className="md:hidden"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: 9997,
+            background: "rgba(0,0,0,0.45)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+          }}
+        />
+      )}
+
+      {/* ================= MOBILE MENU ================= */}
+      <div
+        className="md:hidden"
+        style={{
+          position: "fixed",
+          top: "64px",
+          left: 0,
+          right: 0,
+          width: "100%",
+          zIndex: 9998,
+
+          background: "#0a0a0a",
+
+          borderBottom: "1px solid rgba(255,255,255,0.12)",
+
+          boxShadow: "0 15px 40px rgba(0,0,0,0.6)",
+
+          transform: menuOpen
+            ? "translateY(0)"
+            : "translateY(-120%)",
+
+          opacity: menuOpen ? 1 : 0,
+
+          visibility: menuOpen
+            ? "visible"
+            : "hidden",
+
+          pointerEvents: menuOpen
+            ? "auto"
+            : "none",
+
+          transition:
+            "transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "20px 0 25px",
+          }}
+        >
+          <a
+            href="#home"
+            onClick={closeMenu}
+            style={{
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 600,
+              textDecoration: "none",
+              padding: "14px 20px",
+            }}
+          >
+            Home
+          </a>
+
+          <a
+            href="#about"
+            onClick={closeMenu}
+            style={{
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 600,
+              textDecoration: "none",
+              padding: "14px 20px",
+            }}
+          >
+            About
+          </a>
+
+          <a
+            href="#projects"
+            onClick={closeMenu}
+            style={{
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 600,
+              textDecoration: "none",
+              padding: "14px 20px",
+            }}
+          >
+            Project
+          </a>
+
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            style={{
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 600,
+              textDecoration: "none",
+              padding: "14px 20px",
+            }}
+          >
+            Contact
+          </a>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
 
