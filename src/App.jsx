@@ -14,18 +14,40 @@ function App() {
 
   return (
     <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+      {!isLoaded && (
+        <LoadingScreen onComplete={() => setIsLoaded(true)} />
+      )}
+
       <div
-        className={`min-h-screen transition-opacity duration-700 ${
+        className={`min-h-screen bg-black text-gray-100 transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"
-        } bg-black text-gray-100`}
+        }`}
       >
-        <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Home />
-        <About />
-        <Project />
-        <Contact />
+        {/* NAVBAR - always stays sharp */}
+        <Navbar
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+
+        {/* MOBILE MENU - always stays sharp */}
+        <MobileMenu
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+
+        {/* ONLY THIS PART GETS BLURRED */}
+        <main
+          className={`transition-all duration-300 ${
+            menuOpen
+              ? "blur-md scale-[0.995]"
+              : "blur-0 scale-100"
+          }`}
+        >
+          <Home />
+          <About />
+          <Project />
+          <Contact />
+        </main>
       </div>
     </>
   );
